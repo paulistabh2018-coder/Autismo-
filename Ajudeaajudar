@@ -1,0 +1,376 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda para a Melissa - Campanha de Arrecadação</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Google Sans / Fredoka & Nunito for friendly typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#e60067',
+                            lightPink: '#fce7f3',
+                            navy: '#0e1f48',
+                            blue: '#1d4ed8',
+                            skyBlue: '#0284c7',
+                            yellow: '#f59e0b',
+                            green: '#16a34a',
+                            bgYellow: '#fefce8'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom decorative wave background and animations */
+        body {
+            background: linear-gradient(180deg, #fffcf5 0%, #fef3c7 40%, #e0f2fe 100%);
+            font-family: 'Nunito', sans-serif;
+            color: #0e1f48;
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+
+        .heading-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Heart Puzzle CSS graphic element */
+        .puzzle-heart {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Custom Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #0e1f48;
+            color: #fff;
+            text-align: center;
+            border-radius: 9999px;
+            padding: 12px 24px;
+            position: fixed;
+            z-index: 50;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-6 px-3 sm:px-6 flex flex-col items-center justify-center">
+
+    <main class="max-w-4xl w-full bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-white/80 overflow-hidden my-4 relative">
+        
+        <!-- Header background pattern decoration -->
+        <div class="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 to-blue-400"></div>
+
+        <section class="p-6 sm:p-10 pb-4 text-center relative">
+            
+            <!-- Top Tagline & Decorative Elements -->
+            <div class="flex flex-col sm:flex-row items-center justify-between mb-4 gap-4">
+                
+                <!-- Puzzle Heart Logo Icon -->
+                <div class="flex items-center gap-3">
+                    <svg class="w-16 h-16 drop-shadow-md" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 85C50 85 15 60 15 35C15 22.5 25 15 35 15C42 15 47 19 50 23C53 19 58 15 65 15C75 15 85 22.5 85 35C85 60 50 85 50 85Z" fill="#e60067"/>
+                        <!-- Puzzle Overlay styling -->
+                        <path d="M15 35C15 22.5 25 15 35 15C42 15 47 19 50 23V85C50 85 15 60 15 35Z" fill="#0284c7" opacity="0.8"/>
+                        <circle cx="35" cy="35" r="7" fill="#f59e0b"/>
+                        <circle cx="65" cy="35" r="7" fill="#16a34a"/>
+                    </svg>
+                    <div class="text-left hidden sm:block">
+                        <span class="block text-xs font-bold text-brand-pink uppercase tracking-widest">Campanha de Apoio</span>
+                        <span class="text-sm text-gray-500 font-semibold">Cuidado & Inclusão</span>
+                    </div>
+                </div>
+
+                <!-- Hand-written slogan on top right -->
+                <div class="text-center sm:text-right">
+                    <p class="handwritten text-2xl sm:text-3xl text-brand-navy leading-none font-bold transform sm:-rotate-2">
+                        Juntos podemos <br>fazer a diferença! <span class="text-brand-pink">♡</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="mt-2 mb-4">
+                <h1 class="heading-font text-3xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy tracking-tight uppercase leading-tight">
+                    AJUDA PARA <br class="sm:hidden">
+                    <span class="text-brand-pink">A MELISSA</span>
+                </h1>
+                
+                <!-- Subtitle -->
+                <h2 class="handwritten text-3xl sm:text-4xl text-brand-navy font-bold mt-1">
+                    Melissa Silveira, 7 aninhos
+                </h2>
+            </div>
+
+            <!-- Badge Autism Level 2 -->
+            <div class="inline-block bg-brand-pink text-white font-fredoka px-6 py-2.5 rounded-full text-lg sm:text-2xl font-bold shadow-lg transform hover:scale-105 transition-transform duration-200">
+                Autismo Nível 02 ♡
+            </div>
+        </section>
+
+        <section class="px-6 sm:px-10 py-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            
+            <!-- Description Text Box -->
+            <div class="md:col-span-7 bg-amber-50/60 p-5 sm:p-6 rounded-2xl border border-amber-200/60 shadow-sm">
+                <p class="text-gray-800 text-base sm:text-lg leading-relaxed text-justify font-medium">
+                    Trata-se de uma criança que apresenta características e necessidades de suporte compatíveis com <strong class="text-brand-navy font-bold">Transtorno do Espectro Autista (TEA)</strong>, havendo suspeita de necessidade de suporte nível 2. No momento, encontra-se em processo de avaliação diagnóstica, ainda sem laudo médico conclusivo.
+                </p>
+            </div>
+
+            <!-- Children Illustration Graphic -->
+            <div class="md:col-span-5 flex justify-center items-center p-2">
+                <div class="relative w-full max-w-xs text-center">
+                    <!-- SVG Illustration representation of children around heart puzzle -->
+                    <svg viewBox="0 0 300 280" class="w-full h-auto drop-shadow-md">
+                        <!-- Background Glow -->
+                        <circle cx="150" cy="140" r="100" fill="#fef3c7" opacity="0.6"/>
+                        
+                        <!-- Center Puzzle Heart -->
+                        <g transform="translate(110, 100) scale(0.8)">
+                            <path d="M50 85C50 85 15 60 15 35C15 22.5 25 15 35 15C42 15 47 19 50 23C53 19 58 15 65 15C75 15 85 22.5 85 35C85 60 50 85 50 85Z" fill="#f59e0b"/>
+                            <path d="M50 23C53 19 58 15 65 15C75 15 85 22.5 85 35C85 60 50 85 50 85V23Z" fill="#e60067"/>
+                            <path d="M15 35C15 22.5 25 15 35 15C42 15 47 19 50 23V85C50 85 15 60 15 35Z" fill="#0284c7"/>
+                            <path d="M50 50 L85 35 C85 60 50 85 50 85 Z" fill="#16a34a"/>
+                        </g>
+
+                        <!-- Children holding hands icons / avatars around -->
+                        <!-- Child 1 Top -->
+                        <circle cx="150" cy="45" r="22" fill="#fbcfe8"/>
+                        <circle cx="150" cy="40" r="18" fill="#38bdf8"/>
+                        <!-- Child 2 Right -->
+                        <circle cx="235" cy="100" r="22" fill="#fde68a"/>
+                        <circle cx="235" cy="95" r="18" fill="#fb923c"/>
+                        <!-- Child 3 Bottom Right -->
+                        <circle cx="220" cy="200" r="22" fill="#fbcfe8"/>
+                        <circle cx="220" cy="195" r="18" fill="#f43f5e"/>
+                        <!-- Child 4 Bottom Left -->
+                        <circle cx="80" cy="200" r="22" fill="#fed7aa"/>
+                        <circle cx="80" cy="195" r="18" fill="#854d0e"/>
+                        <!-- Child 5 Left -->
+                        <circle cx="65" cy="100" r="22" fill="#fbcfe8"/>
+                        <circle cx="65" cy="95" r="18" fill="#e11d48"/>
+
+                        <!-- Connecting circle ring (holding hands) -->
+                        <circle cx="150" cy="140" r="85" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 8"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 sm:px-10 my-4">
+            <div class="bg-gradient-to-r from-pink-100 via-pink-200 to-pink-100 border-2 border-pink-300 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shadow-sm">
+                <div class="text-brand-pink text-3xl sm:text-4xl shrink-0">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <p class="handwritten text-2xl sm:text-3xl text-brand-navy font-bold leading-tight">
+                    Toda contribuição faz a diferença e ajuda a garantir o melhor para a Melissa.
+                </p>
+            </div>
+        </section>
+
+        <section class="px-6 sm:px-10 py-4 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+            
+            <!-- Pillar 1: Apoio no tratamento -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-pink-500 text-white flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-md">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <h3 class="heading-font font-bold text-gray-800 text-base sm:text-lg leading-snug">
+                    Apoio no tratamento
+                </h3>
+            </div>
+
+            <!-- Pillar 2: Mais qualidade de vida -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-blue-500 text-white flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-md">
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+                <h3 class="heading-font font-bold text-gray-800 text-base sm:text-lg leading-snug">
+                    Mais qualidade de vida
+                </h3>
+            </div>
+
+            <!-- Pillar 3: Acompanhamento especializado -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-amber-400 text-white flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-md">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="heading-font font-bold text-gray-800 text-base sm:text-lg leading-snug">
+                    Acompanhamento especializado
+                </h3>
+            </div>
+
+            <!-- Pillar 4: Mais inclusão e oportunidades -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500 text-white flex items-center justify-center text-2xl sm:text-3xl mb-3 shadow-md">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3 class="heading-font font-bold text-gray-800 text-base sm:text-lg leading-snug">
+                    Mais inclusão e oportunidades
+                </h3>
+            </div>
+        </section>
+
+        <section class="px-6 sm:px-10 py-6">
+            <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border-2 border-pink-200 shadow-inner">
+                
+                <!-- Email Contact Banner -->
+                <div class="bg-brand-pink text-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-3xl sm:text-4xl bg-white/20 p-3 rounded-xl">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs uppercase tracking-wider font-semibold opacity-90">Contato / Informações:</span>
+                            <a href="mailto:Costaivonete912@gmail.com" class="text-lg sm:text-2xl font-bold hover:underline break-all">
+                                Costaivonete912@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                    <a href="mailto:Costaivonete912@gmail.com" class="bg-white text-brand-pink font-bold px-5 py-2.5 rounded-xl text-sm shadow hover:bg-pink-50 transition">
+                        Enviar E-mail
+                    </a>
+                </div>
+
+                <!-- Pix & QR Code Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Pix Details -->
+                    <div class="md:col-span-8 bg-pink-50/80 p-5 sm:p-6 rounded-2xl border border-pink-200">
+                        <div class="flex items-center gap-3 mb-3">
+                            <!-- Pix Logo Icon -->
+                            <div class="w-10 h-10 bg-teal-500 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-sm">
+                                <i class="fa-solid fa-pix"></i>
+                            </div>
+                            <div>
+                                <span class="text-brand-pink font-bold text-base sm:text-lg">Pix (mãe):</span>
+                                <h4 class="heading-font font-extrabold text-brand-navy text-xl sm:text-2xl">
+                                    Ivanete Maria da Conceição Costa
+                                </h4>
+                            </div>
+                        </div>
+
+                        <!-- Chave Pix Container -->
+                        <div class="mt-4 bg-white p-3.5 rounded-xl border border-pink-200 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
+                            <div class="w-full overflow-hidden text-center sm:text-left">
+                                <span class="block text-xs text-gray-500 font-semibold uppercase">Chave Pix</span>
+                                <code id="pixKey" class="text-sm sm:text-base font-mono font-bold text-gray-800 break-all select-all">
+                                    618280f4-5ffe-444d-806b-47fc62ec8fa5
+                                </code>
+                            </div>
+                            <button onclick="copyPixKey()" class="w-full sm:w-auto shrink-0 bg-brand-pink hover:bg-pink-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow transition active:scale-95">
+                                <i class="fa-regular fa-copy"></i>
+                                <span id="btnCopyText">Copiar Chave</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="md:col-span-4 flex flex-col items-center justify-center text-center bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+                        <img 
+                            src="https://api.qrserver.com/v1/create-qr-code/?data=618280f4-5ffe-444d-806b-47fc62ec8fa5&size=200x200" 
+                            alt="QR Code do Pix da Melissa" 
+                            class="w-36 h-36 sm:w-40 sm:h-40 object-contain rounded-lg border border-gray-100 p-1"
+                            onerror="this.onerror=null; this.src='https://placehold.co/200x200/e60067/ffffff?text=QR+Code+Pix';"
+                        >
+                        <span class="mt-2 text-xs font-bold text-brand-navy uppercase tracking-wider">
+                            QR Code do Pix
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="px-6 sm:px-10 py-6 bg-gradient-to-t from-pink-50 to-white border-t border-pink-100 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Apoio / Instituto Revoe -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl shadow-sm border border-blue-200">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                </div>
+                <div>
+                    <span class="block text-xs text-gray-500 font-bold uppercase tracking-wider">Apoio:</span>
+                    <h5 class="heading-font font-bold text-brand-navy text-lg sm:text-xl leading-tight">
+                        Instituto revoe
+                    </h5>
+                    <a href="https://instagram.com/institutorevoe" target="_blank" rel="noopener noreferrer" class="text-sm text-brand-pink font-semibold hover:underline flex items-center gap-1">
+                        <i class="fa-brands fa-instagram"></i> @institutorevoe
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Slogan -->
+            <div class="text-center">
+                <p class="handwritten text-2xl sm:text-3xl text-brand-navy font-bold leading-none">
+                    Juntos por uma infância <br class="sm:hidden">
+                    <span class="text-brand-pink">com mais possibilidades! ♡</span>
+                </p>
+            </div>
+
+            <!-- Bottom decorative puzzle shapes -->
+            <div class="flex items-center gap-2 text-2xl text-amber-400">
+                <i class="fa-solid fa-puzzle-piece text-sky-400"></i>
+                <i class="fa-solid fa-puzzle-piece text-pink-500 transform rotate-12"></i>
+                <i class="fa-solid fa-puzzle-piece text-emerald-500"></i>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Toast Notification element -->
+    <div id="toast" class="font-bold flex items-center gap-2">
+        <i class="fa-solid fa-check-circle text-green-400"></i>
+        <span>Chave Pix copiada com sucesso!</span>
+    </div>
+
+    <!-- JavaScript Functionality -->
+    <script>
+        function copyPixKey() {
+            const pixKeyText = document.getElementById('pixKey').innerText.trim();
+            
+            // Fallback for document.execCommand('copy')
+            const textArea = document.createElement("textarea");
+            textArea.value = pixKeyText;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+       
